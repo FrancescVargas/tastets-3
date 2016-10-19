@@ -1,0 +1,287 @@
+
+body
+    {
+        width: 75%;
+        margin: auto;
+    
+    }
+#contenedor
+{
+    background-color: white;
+}
+header
+    {
+        margin-bottom: 30px;
+        background-image: url(../vista/imatges/Fondo-de-pantalla-Abstracto-158.jpg);
+        padding: 0 20px;
+    }
+header h1
+    {
+        display: inline-block;
+        width: 70%;
+        color: whitesmoke;
+    }
+#imatgeheader
+    {
+        width: 100%;
+    }
+#logo
+    {
+        float: right;
+        margin: 20px 0;
+        width: 30%;
+    }
+#identificador input,button
+    {
+        font-size: 0.6em;
+        text-align: left;  
+    }
+
+h2
+{
+    text-align: center;
+    color: darkblue;
+    font-size: 1.7em;
+}
+h3
+{
+    text-align: center;
+    color: darkblue;
+    font-size: 1.5em;
+}
+h4
+{
+    text-align: center;
+    color: darkblue;
+    font-size: 1.2em;
+}
+table
+{
+    text-align: center;
+    margin: auto;
+}
+table,th,td
+{
+border: 1px solid black;
+border-collapse: collapse;
+padding: 0 5px;
+    
+}
+th
+{
+    background-color: cornflowerblue;
+}
+td
+{
+    padding: 0 5px;
+}
+td a
+{
+    text-decoration: none;
+    font-weight: bold;
+}
+tr:hover
+{
+    background-color: antiquewhite;
+    font-size: 1.1em;
+}
+td:hover
+{
+    background-color: rgba(240, 192, 174, 0.79);
+}
+th button a
+{
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+th button a:hover
+{
+    color: white;
+    
+}
+th button:hover
+{
+    
+    background-color: brown;
+    border: 1px solid yellow;
+}
+#video
+    {
+        float: right;
+    }
+iframe
+    {
+        display: block;
+    }
+#detalls
+    {
+        
+        margin: 10px;
+        margin-top: 0;
+        width: 50%;
+        text-align: center;
+        clear: both;
+        display: inline-block;
+        float: left;
+    }
+#detalls h3
+{
+    border: 2px solid blue;
+        border-radius: 50px;
+    padding: 10px;
+}
+#detalls img
+{
+    width: 100px;
+}
+#fotodesc
+    {
+        float: right;
+        width: 30%;
+    }
+
+#forminscripcio
+    {
+        float: left;
+        width: 45%;
+        vertical-align: text-top;
+        margin-bottom: 30px;
+
+    }
+#formescondido
+    {
+
+        box-shadow: 10px 10px 10px blue;
+        margin-top: 20px;
+        border: 1px solid blue;
+     }
+ #formescondido h4
+    {
+        margin: 0;
+        text-align: center;
+    }
+
+        
+   
+#cargarform
+    {
+        float: right;
+
+        margin: 5px;
+    }
+input, label, textarea, select
+    {
+        margin: 0 5px;
+    }
+
+
+/*  --------  privat -----  */
+
+
+textarea
+{
+    width: 90%;
+}
+#resultado
+{
+    margin-top: 20px;
+    font-size: 1em;    
+}
+#tablecargar
+{
+    border-collapse: collapse;
+    text-align: left;
+    margin-bottom: 30px;
+}
+#tablecargar th
+{
+  
+    text-align: center;
+}
+
+#tablecargar tr:hover
+{
+    font-size: 1em;
+    background-color: transparent;
+}
+#tablecargar td
+{   
+    vertical-align: text-top;
+}
+#tablecargar td:hover
+{   
+    background-color: transparent;
+}
+#tablecargar td img
+{
+    float: right;
+    
+}
+#resultado span
+{
+    color: darkblue;
+    font-weight: bold;
+    
+}
+.eliminar
+      {
+          width: 20px;
+      }
+.fototastet
+{
+    width: 150px;
+}
+#formmodificar
+{
+    width: 80%;
+    padding: 10px;
+    border: 2px solid blue;
+}
+.inputlong
+{
+    width: 300px;
+}
+.inputshort
+{
+    width: 50px;
+}
+
+#confirmacion
+{
+    text-align: center;
+    border: 2px solid red;
+    border-radius: 50px;
+    width: 30%;
+    margin: auto;
+    padding: 10px;
+    background-color: #f5c6df;
+}
+#tornar img
+{
+    width: 100px;
+    margin: auto;
+}
+#tornar
+{
+    text-align: center;
+}
+#error
+{
+    text-align: center;
+    font-weight: bold;
+    color: brown;
+}
+.instruccio
+{
+    text-align: center;
+    color: brown;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.chart
+{
+    width: 80%;
+    height: 100px;
+}
