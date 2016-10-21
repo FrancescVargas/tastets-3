@@ -40,10 +40,11 @@
         
       
         echo "<div id='detalls'>
-        <h3>Responsable: ".$data["responsable"]."<br>".
-        $data["departament"]."<br>
+        <h3>Responsable: <br>".$data["responsable"]."<br>Departament:<br>".
+        $data["dep"]["nomdep"]."<br>
         Lloc: ".$data["lloc"]."<br>Disponibilitat: ".$data["int_dispany"]."<br>Nivell Mínim dels estudiants: ".$data["int_nivell"]."<br>Màxim d'alumnes per sessió: ".$data["int_maxim_alu"]."</h3><div><a href='".$rest."index.php' title='Tornar a Index'><img src='".$rest."vista/imatges/home.jpg'></a></div></div>";
         
+       
         
            echo '<div id="forminscripcio">';
          if(!isset($_GET["inscrit"]))

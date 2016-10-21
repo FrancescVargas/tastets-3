@@ -69,10 +69,11 @@ if(isset($_SESSION['dni']) && !isset($_POST["confirmar"]))
         if(count($res)>0)
         {    
             
-            echo "<table>
+            echo "<table>";
             
-            <tr><th colspan=6><button id='afegirtastet'><a href='afegirtastet.php?responsable=".$res[0]["responsable"]."&dni=".$res[0]["dni"]."' title='afegir tastet'>Afegir Nou tastet</a></button>
-            <tr><th>Nom del Tastet</th><th>Peticions</th><th>Tastets Fets</th><th>Total Alumnes</th><th>Eliminar</th><th>Modificar</th></tr>";
+            if($_SESSION['perfil']=="A") echo "<tr><th colspan=6><button id='afegirtastet'><a href='afegirtastet.php?responsable=".$res[0]["responsable"]."&dni=".$res[0]["dni"]."' title='afegir tastet'>Afegir Nou tastet</a></button>
+            </tr>";
+            echo "<tr><th>Nom del Tastet</th><th>Peticions</th><th>Tastets Fets</th><th>Total Alumnes</th><th>Eliminar</th><th>Modificar</th></tr>";
             foreach($res as $fila)
             {
                 

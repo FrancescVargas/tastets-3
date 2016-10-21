@@ -11,8 +11,8 @@ if(isset($_GET["campo"]))
         }
        
   
-if($_SESSION["perfil"]=="B") $sel="SELECT estu_activitats.dni_estu,estu_activitats.nom_estu,estu_activitats.mail_estu,solicituts.centre,activitats.nom,activitats_fetes.data,activitats_fetes.anyaca as Any_Academic from activitats,activitats_fetes,solicituts,estu_activitats where estu_activitats.activitats_fetes_id=activitats_fetes.id AND activitats_fetes.solicitut_id=solicituts.id AND solicituts.activitat_id=activitats.id and activitats.dni='".$_SESSION["dni"]."' order by ".$_GET["campo"].";";
-if($_SESSION["perfil"]=="A") $sel="SELECT estu_activitats.dni_estu,estu_activitats.nom_estu,estu_activitats.mail_estu,solicituts.centre,activitats.nom,activitats_fetes.data,activitats_fetes.anyaca as Any_Academic from activitats,activitats_fetes,solicituts,estu_activitats where estu_activitats.activitats_fetes_id=activitats_fetes.id AND activitats_fetes.solicitut_id=solicituts.id AND solicituts.activitat_id=activitats.id order by ".$_GET["campo"].";";
+if($_SESSION["perfil"]=="B") $sel="SELECT solicituts.centre,activitats_fetes.data,activitats_fetes.anyaca as Any_Academic,estu_activitats.dni_estu,estu_activitats.nom_estu,estu_activitats.mail_estu,activitats.nom as Nom_Tastet from activitats,activitats_fetes,solicituts,estu_activitats where estu_activitats.activitats_fetes_id=activitats_fetes.id AND activitats_fetes.solicitut_id=solicituts.id AND solicituts.activitat_id=activitats.id and activitats.dni='".$_SESSION["dni"]."' order by ".$_GET["campo"].";";
+if($_SESSION["perfil"]=="A") $sel="SELECT solicituts.centre,activitats_fetes.data,activitats_fetes.anyaca as Any_Academic,estu_activitats.dni_estu,estu_activitats.nom_estu,estu_activitats.mail_estu,activitats.nom as Nom_Tastet from activitats,activitats_fetes,solicituts,estu_activitats  where estu_activitats.activitats_fetes_id=activitats_fetes.id AND activitats_fetes.solicitut_id=solicituts.id AND solicituts.activitat_id=activitats.id order by ".$_GET["campo"].";";
 
 
 $res=$con->query($sel);

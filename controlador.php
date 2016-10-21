@@ -24,8 +24,12 @@ $app->get("/detallsactivitat",function($request,$response,$args)  // sacamos el 
               $sql="SELECT * from activitats where activitats.id= :params_id;";
               $res1 = $con->prepare($sql);
               $res1->execute([':params_id' =>$params["id"]]);
-             
               $datos= $res1->fetch();
+              
+              $sql2="SELECT nomdep from 340_departaments_upc,activitats where 340_departaments_upc.codidep=activitats.departament and activitats.id= :params_id;";
+              $res2 = $con->prepare($sql2);
+              $res2->execute([':params_id' =>$params["id"]]);
+              $datos["dep"]= $res2->fetch();
               
               $datos["ruta"]=$request->getUri()->getBasePath();
              

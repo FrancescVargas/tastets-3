@@ -49,7 +49,7 @@
                  $res = $con->query($sel);
                    $res=$res->fetch();
                    
-
+                 echo $res["responsable"];
                  echo "<h2>Ara pots editar les dades del tastet ".$res["nom"]."</h2>";
 
                   echo "<form id='formmodificar' method='post' action='editartastet.php' enctype='multipart/form-data'>";
@@ -57,7 +57,28 @@
                  echo "<p class='instruccio'>No utilitzis cometes dobles. Utilitza les simples</p> <br><input type='hidden' name='id_anterior' value='".$res["id"]."'>";
                 echo "<label>Id</label><input type='number' name='id' value='${res['id']}'><br>";
                 echo '<label>Nom</label> <br><input type="text" class="inputlong" name="nom" value="'.$res['nom'].'"><br>';
-                echo '<label>Responsable</label> <br><input type="text" name="responsable" value="'.$res['responsable'].'"><br>';
+                echo '<label>Responsable</label> <br>';
+                
+                 
+                $sel3 = "SELECT 340_personal.* FROM 340_personal,340_personal_epsevg where 340_personal.dni=340_personal_epsevg.dni and 340_personal_epsevg.incid='A' order by nom;";
+        $res3 = $con->query($sel3);
+        $res3=$res3->fetchAll();
+
+        echo "<select name='responsable'>";
+
+        foreach($res3 as $fila)
+         {
+            if($res['responsable']==$fila["nom"]." ".$fila["cognoms"]) echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."' selected>".$fila["nom"]." ".$fila["cognoms"]."</option>";  
+            
+            else echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."'>".$fila["nom"]." ".$fila["cognoms"]."</option>";
+         }
+
+
+        echo "</select><br>"; 
+                 
+                 
+                 
+                 
                  
                 echo '<label>DNI</label> <br><input type="text" name="dni" value="'.$res['dni'].'"><br>';
                 echo '<label>Departament</label> <br><input class="inputlong" type="text" name="departament" value="'.$res['departament'].'"><br>';
@@ -92,7 +113,30 @@
                 echo "<label>Quantitat màxima de tallers en un any acadèmic:</label> <br><input type='number' class='inputshort' name='int_max_tallers_any' value='${res['int_max_tallers_any']}'><br>";
                 echo "<label>Duració de l'activitat (hores) </label> <br><input type='number' class='inputshort' name='int_duracio_activitat' value='${res['int_duracio_activitat']}'><br>";
                 echo "<label>Temps de preparació de l'activitat (hores) </label> <br><input type='number' class='inputshort' name='int_duracio_preparacio' value='${res['int_duracio_preparacio']}'><br>";
-                echo "<label>Personal Implicat</label> <br><input type='number' class='inputshort' name='int_personal_implicat' value='${res['int_personal_implicat']}'><br>";
+                echo "<label>Personal Implicat</label> <br>";
+                 
+             $sql4="select nom_participant from participants_activitats where activitats_id=".$res["id"].";";
+             $res4 = $con->query($sql4);
+             $res4=$res4->fetchAll();
+                 
+             
+                 for($i=0;$i<5;$i++)
+        {
+            echo "<select name='personal_implicat".$i."'>";
+            echo "<option value='' selected>Buit</option>";
+            foreach($res3 as $fila)
+         {
+             if($res4[$i]["nom_participant"]== $fila["nom"]." ".$fila["cognoms"]) echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."' selected>".$fila["nom"]." ".$fila["cognoms"]."</option>";
+                
+                
+            else echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."' >".$fila["nom"]." ".$fila["cognoms"]."</option>"; 
+         }
+
+
+        echo "</select><br>";  
+        }
+                 
+                 
                 echo "<label>Suggeriments i comentaris:</label><br><textarea rows='8' cols='60' name='int_sugg' > ${res['int_sugg']}</textarea><br>";
                 echo "</fieldset>";
 
@@ -114,20 +158,55 @@
                             echo "";
                         } 
                         
-                        $sql= 'UPDATE activitats SET id = '.$_POST["id"].', nom = "'.$_POST["nom"].'", responsable = "'.$_POST["responsable"].'", dni = "'.$_POST["dni"].'", departament = "'.$_POST["departament"].'", lloc = "'.$_POST["lloc"].'", descripcio = "'.$_POST["descripcio"].'", foto = "'.$f.'", int_comentari= "'.$_POST["int_comentari"].'", int_maxim_alu= "'.$_POST["int_maxim_alu"].'", int_nivell= "'.$_POST["int_nivell"].'", int_dispany= "'.$_POST["int_dispany"].'", int_max_tallers_any= "'.$_POST["int_max_tallers_any"].'", int_sugg= "'.$_POST["int_sugg"].'", int_duracio_activitat="'.$_POST["int_duracio_activitat"].'", int_duracio_preparacio="'.$_POST["int_duracio_preparacio"].'", int_personal_implicat="'.$_POST["int_personal_implicat"].'" WHERE activitats.id ='.$_POST["id_anterior"].';';
+                        $sql= 'UPDATE activitats SET id = '.$_POST["id"].', nom = "'.$_POST["nom"].'", responsable = "'.$_POST["responsable"].'", dni = "'.$_POST["dni"].'", departament = "'.$_POST["departament"].'", lloc = "'.$_POST["lloc"].'", descripcio = "'.$_POST["descripcio"].'", foto = "'.$f.'", int_comentari= "'.$_POST["int_comentari"].'", int_maxim_alu= "'.$_POST["int_maxim_alu"].'", int_nivell= "'.$_POST["int_nivell"].'", int_dispany= "'.$_POST["int_dispany"].'", int_max_tallers_any= "'.$_POST["int_max_tallers_any"].'", int_sugg= "'.$_POST["int_sugg"].'", int_duracio_activitat="'.$_POST["int_duracio_activitat"].'", int_duracio_preparacio="'.$_POST["int_duracio_preparacio"].'" WHERE activitats.id ='.$_POST["id_anterior"].';';
                     }
 
                    
              
                  else
                  {
-                   $sql= 'UPDATE activitats SET id = '.$_POST["id"].', nom = "'.$_POST["nom"].'", responsable = "'.$_POST["responsable"].'", dni = "'.$_POST["dni"].'", departament = "'.$_POST["departament"].'", lloc = "'.$_POST["lloc"].'", descripcio = "'.$_POST["descripcio"].'", int_comentari= "'.$_POST["int_comentari"].'", int_maxim_alu= "'.$_POST["int_maxim_alu"].'", int_nivell= "'.$_POST["int_nivell"].'", int_dispany= "'.$_POST["int_dispany"].'", int_max_tallers_any= "'.$_POST["int_max_tallers_any"].'", int_sugg= "'.$_POST["int_sugg"].'", int_duracio_activitat="'.$_POST["int_duracio_activitat"].'", int_duracio_preparacio="'.$_POST["int_duracio_preparacio"].'", int_personal_implicat="'.$_POST["int_personal_implicat"].'"  WHERE activitats.id ='.$_POST["id_anterior"].';';
+                   $sql= 'UPDATE activitats SET id = '.$_POST["id"].', nom = "'.$_POST["nom"].'", responsable = "'.$_POST["responsable"].'", dni = "'.$_POST["dni"].'", departament = "'.$_POST["departament"].'", lloc = "'.$_POST["lloc"].'", descripcio = "'.$_POST["descripcio"].'", int_comentari= "'.$_POST["int_comentari"].'", int_maxim_alu= "'.$_POST["int_maxim_alu"].'", int_nivell= "'.$_POST["int_nivell"].'", int_dispany= "'.$_POST["int_dispany"].'", int_max_tallers_any= "'.$_POST["int_max_tallers_any"].'", int_sugg= "'.$_POST["int_sugg"].'", int_duracio_activitat="'.$_POST["int_duracio_activitat"].'", int_duracio_preparacio="'.$_POST["int_duracio_preparacio"].'" WHERE activitats.id ='.$_POST["id_anterior"].';';
                  }
-                
+                 
+                 
+                 
+                echo $sql;
                  $res=$con->exec($sql); 
                  if($res===false) $_SESSION["error"]="No s'ha pogut editar el tastet ".$_POST["nom"];
                  else $_SESSION["error"]="Editat tastet ".$_POST["nom"];
-                 header ("Location:zonaprivada.php");
+                 
+                 $sql5= 'DELETE from participants_activitats where activitats_id='.$_POST["id"].';'; 
+                 $res5=$con->exec($sql5);
+                 
+                
+                 
+                 for($i=0;$i<5;$i++)
+                {
+                    if($_POST["personal_implicat".$i]!=="")
+                    {
+
+                        $sql6 = 'INSERT INTO `participants_activitats` (`nom_participant`,`activitats_id`) VALUES ("'.$_POST["personal_implicat".$i].'","'.$_POST["id"].'");';
+                        $res6=$con->exec($sql6);
+                    }
+                   
+                }
+
+                 
+              $sel7 = "SELECT 340_personal.*,340_personal_epsevg.departament FROM 340_personal,340_personal_epsevg where 340_personal.dni=340_personal_epsevg.dni and 340_personal_epsevg.incid='A' order by nom;";
+             $res7 = $con->query($sel7);
+             $res7=$res7->fetchAll();
+
+            foreach($res7 as $fila)
+             {
+                 if($fila["nom"]." ".$fila["cognoms"]===$_POST["responsable"])
+                 {
+                     $sql3 = 'update activitats set dni="'.$fila["dni"].'", departament="'.$fila["departament"].'" where activitats.id="'.$_POST["id"].'";';
+                     $res3=$con->exec($sql3);
+
+                 }
+             }
+                 
+             //    header ("Location:zonaprivada.php");
                 
             
              }

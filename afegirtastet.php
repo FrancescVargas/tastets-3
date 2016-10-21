@@ -54,9 +54,26 @@
         echo "<fieldset><legend>Informació Pública:</legend><br>";
         echo "<p class='instruccio'>No utilitzis cometes dobles. Utilitza les simples</p> <br><label>Id</label> <br><input class='inputshort' type='number' name='id'><br>";
         echo "<label>Nom</label> <br><input class='inputlong' type='text' name='nom'><br>";
-        echo "<label>Responsable</label> <br><input type='text' name='responsable'><br>";
-        echo "<label>DNI</label> <br><input type='text' name='dni' value='".$_GET["dni"]."' ><br>";
-        echo "<label>Departament</label> <br><input class='inputlong' type='text' name='departament'><br>";
+        echo "<label>Responsable</label> <br>";
+            
+            
+        $sel3 = "SELECT 340_personal.* FROM 340_personal,340_personal_epsevg where 340_personal.dni=340_personal_epsevg.dni and 340_personal_epsevg.incid='A' order by nom;";
+        $res3 = $con->query($sel3);
+        $res3=$res3->fetchAll();
+        
+        echo "<select name='responsable'>";
+
+        foreach($res3 as $fila)
+         {
+             echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."'>".$fila["nom"]." ".$fila["cognoms"]."</option>;";
+            
+         }
+
+
+        echo "</select><br>";     
+            
+            
+        
         echo "<label>Lloc</label> <br><input class='inputlong' type='text' name='lloc'><br>";
         echo "<label>Foto</label><br><input type='file' name='foto'><br>";
         echo "<label>Descripció</label><br><textarea id='mytextarea' rows='8' cols='60' name='descripcio' ></textarea><br>";
@@ -74,7 +91,8 @@
                 
             foreach($res2 as $fila)
                  {
-                     echo '<input type="checkbox" name="int_dispany" value="'.$fila["id"].'">'.$fila["disp"].'<br>';
+                if($fila["id"]==5) echo  '<input type="checkbox" name="int_dispany" value="'.$fila["id"].'" checked>'.$fila["disp"].'<br>';    
+                else echo '<input type="checkbox" name="int_dispany" value="'.$fila["id"].'">'.$fila["disp"].'<br>';
                  }
        
           
@@ -88,7 +106,22 @@
         echo "<label>Quantitat màxima de tallers en un any acadèmic:</label> <br><input type='number' class='inputshort' name='int_max_tallers_any'><br>";
         echo "<label>Duració de l'activitat (hores) </label> <br><input type='number' class='inputshort' name='int_duracio_activitat' ><br>";
         echo "<label>Temps de preparació de l'activitat (hores) </label> <br><input type='number' class='inputshort' name='int_duracio_preparacio' ><br>";
-        echo "<label>Personal Implicat</label> <br><input type='number' class='inputshort' name='int_personal_implicat'><br>";
+        echo "<label>Personal Implicat</label> <br>";
+          
+            
+        for($i=0;$i<4;$i++)
+        {
+            echo "<select name='personal_implicat".$i."'>";
+            echo "<option value='' selected>Buit</option>";
+            foreach($res3 as $fila)
+         {
+             echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."'>".$fila["nom"]." ".$fila["cognoms"]."</option>";
+         }
+
+
+        echo "</select><br>";  
+        }
+        
         echo "<label>Suggeriments i comentaris:</label><br><textarea rows='8' cols='60' name='int_sugg'></textarea><br>";
         echo "</fieldset>";
             
@@ -111,7 +144,7 @@
                             echo "";
 
                         } 
-                        $sql = 'INSERT INTO `activitats` (`id`,`nom`, `responsable`, `dni`, `departament`, `lloc`, `descripcio`, `foto`,`int_comentari`, `int_maxim_alu`,`int_nivell`,`int_dispany`,`int_max_tallers_any`,`int_sugg`,`int_duracio_activitat`,`int_duracio_preparacio`,`int_personal_implicat`) VALUES ("'.$_POST["id"].'","'.$_POST["nom"].'", "'.$_POST["responsable"].'", "'.$_POST["dni"].'", "'.$_POST["departament"].'", "'.$_POST["lloc"].'", "'.$_POST["descripcio"].'", "'.$f.'","'.$_POST["int_comentari"].'", "'.$_POST["int_maxim_alu"].'", "'.$_POST["int_nivell"].'", "'.$_POST["int_dispany"].'", "'.$_POST["int_max_tallers_any"].'", "'.$_POST["int_sugg"].'", "'.$_POST["int_duracio_activitat"].'", "'.$_POST["int_duracio_preparacio"].'", "'.$_POST["int_personal_implicat"].'");';
+                        $sql = 'INSERT INTO `activitats` (`id`,`nom`, `responsable`,`lloc`, `descripcio`, `foto`,`int_comentari`, `int_maxim_alu`,`int_nivell`,`int_dispany`,`int_max_tallers_any`,`int_sugg`,`int_duracio_activitat`,`int_duracio_preparacio`) VALUES ("'.$_POST["id"].'","'.$_POST["nom"].'", "'.$_POST["responsable"].'",  "'.$_POST["lloc"].'", "'.$_POST["descripcio"].'", "'.$f.'","'.$_POST["int_comentari"].'", "'.$_POST["int_maxim_alu"].'", "'.$_POST["int_nivell"].'", "'.$_POST["int_dispany"].'", "'.$_POST["int_max_tallers_any"].'", "'.$_POST["int_sugg"].'", "'.$_POST["int_duracio_activitat"].'", "'.$_POST["int_duracio_preparacio"].'");';
                    
                     }
 
@@ -120,12 +153,40 @@
                  else
                  {
                     
-                   $sql = 'INSERT INTO `activitats` (`id`,`nom`, `responsable`, `dni`, `departament`, `lloc`, `descripcio`,`int_comentari`, `int_maxim_alu`,`int_nivell`,`int_dispany`,`int_max_tallers_any`,`int_sugg`,`int_duracio_activitat`,`int_duracio_preparacio`,`int_personal_implicat`) VALUES ("'.$_POST["id"].'","'.$_POST["nom"].'", "'.$_POST["responsable"].'", "'.$_POST["dni"].'", "'.$_POST["departament"].'", "'.$_POST["lloc"].'", "'.$_POST["descripcio"].'","'.$_POST["int_comentari"].'", "'.$_POST["int_maxim_alu"].'", "'.$_POST["int_nivell"].'", "'.$_POST["int_dispany"].'", "'.$_POST["int_max_tallers_any"].'", "'.$_POST["int_sugg"].'", "'.$_POST["int_duracio_activitat"].'", "'.$_POST["int_duracio_preparacio"].'", "'.$_POST["int_personal_implicat"].'");';
+                   $sql = 'INSERT INTO `activitats` (`id`,`nom`, `responsable`,`lloc`, `descripcio`,`int_comentari`, `int_maxim_alu`,`int_nivell`,`int_dispany`,`int_max_tallers_any`,`int_sugg`,`int_duracio_activitat`,`int_duracio_preparacio`) VALUES ("'.$_POST["id"].'","'.$_POST["nom"].'", "'.$_POST["responsable"].'","'.$_POST["lloc"].'", "'.$_POST["descripcio"].'","'.$_POST["int_comentari"].'", "'.$_POST["int_maxim_alu"].'", "'.$_POST["int_nivell"].'", "'.$_POST["int_dispany"].'", "'.$_POST["int_max_tallers_any"].'", "'.$_POST["int_sugg"].'", "'.$_POST["int_duracio_activitat"].'", "'.$_POST["int_duracio_preparacio"].'");';
                      
                  }
-                 
-                
+            
             $res=$con->exec($sql); 
+            
+            for($i=0;$i<4;$i++)
+            {
+                if($_POST["personal_implicat".$i]!=="")
+                {
+                    
+                    $sql2 = 'INSERT INTO `participants_activitats` (`nom_participant`,`activitats_id`) VALUES ("'.$_POST["personal_implicat".$i].'","'.$_POST["id"].'");';
+                    $res2=$con->exec($sql2);
+                    
+                    
+                }
+            }
+            
+            
+           $sel3 = "SELECT 340_personal.*,340_personal_epsevg.departament FROM 340_personal,340_personal_epsevg where 340_personal.dni=340_personal_epsevg.dni and 340_personal_epsevg.incid='A' order by nom;";
+            $res3 = $con->query($sel3);
+            $res3=$res3->fetchAll();
+
+            foreach($res3 as $fila)
+         {
+             if($fila["nom"]." ".$fila["cognoms"]===$_POST["responsable"])
+             {
+                 $sql3 = 'update activitats set dni="'.$fila["dni"].'", departament="'.$fila["departament"].'" where activitats.id="'.$_POST["id"].'";';
+                 $res3=$con->exec($sql3);
+                 
+             }
+         }
+            
+             
             if($res===false) 
             {
                 if ($con->errorInfo()[2]=="Duplicate entry '".$_POST['id']."' for key 'PRIMARY'") $_SESSION["error"]="No s'ha pogut crear el tastet ".$_POST["nom"]." perquè l'id '".$_POST['id']."' ja existeix";
@@ -133,7 +194,8 @@
             }
             else $_SESSION["error"]="Creat tastet ".$_POST["nom"];
             header ("Location:zonaprivada.php");
-           
+          
+            
        
         }
         

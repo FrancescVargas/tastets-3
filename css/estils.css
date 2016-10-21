@@ -237,6 +237,7 @@ textarea
     width: 80%;
     padding: 10px;
     border: 2px solid blue;
+    margin: auto;
 }
 .inputlong
 {

@@ -17,9 +17,18 @@ function mostrarLista(d){
 
     
     var res  = document.querySelector("#resultado"); 
-    res.innerHTML="<h4>Detalls Tastet "+d.nom+"</h4><table id='tablecargar'><tr><td><img alt='foto'  class='fototastet' src='"+d.foto+"'><span>Id: </span>"+d.id+"<br><span>Nom: </span>"+d.nom+"<br><span>Responsable: </span>"+d.responsable+"<br><span>DNI: </span>"+d.dni+"<br><span>Departament: </span>"+d.departament+"<br><span>Lloc: </span>"+d.lloc+"<br><span>Nombre Màxim d'Alumnes per Sessió: </span>"+d.int_maxim_alu+"<br><span>Nivell mínim (o òptim) d&#39;edat o formació per fer el taller: </span>"+d.int_nivell+"<br><span>Períodes de l&#39;any en que està disponible: </span>"+d.dispany.disp+"<br></td><tr><td><span>Descripció: </span>"+d.descripcio+"<br></td></tr><tr><td><span>Comentaris Interns: </span>"+d.int_comentari+"<br></td></tr><tr><td><span>Quantitat màxima de tallers en un any acadèmic: </span>"+d.int_max_tallers_any+"<br><span>Duració de l'activitat (en hores): </span>"+d.int_duracio_activitat+"<br><span>Temps de preparació de l'activitat (en hores): </span>"+d.int_duracio_preparacio+"<br><span>Quantitat de personal implicat: </span>"+d.int_personal_implicat+"<br></td></tr><tr><td><span>Suggeriments i comentaris: </span>"+d.int_sugg+"<br></td></tr></table>";
-     
+    var cad="";
+    cad="<h4>Detalls Tastet "+d.nom+"</h4><table id='tablecargar'><tr><td><img alt='foto'  class='fototastet' src='"+d.foto+"'><span>Id: </span>"+d.id+"<br><span>Nom: </span>"+d.nom+"<br><span>Responsable: </span>"+d.responsable+"<br><span>DNI: </span>"+d.dni+"<br><span>Departament: </span>"+d.dep.nomdep+"<br><span>Lloc: </span>"+d.lloc+"<br><span>Nombre Màxim d'Alumnes per Sessió: </span>"+d.int_maxim_alu+"<br><span>Nivell mínim (o òptim) d&#39;edat o formació per fer el taller: </span>"+d.int_nivell+"<br><span>Períodes de l&#39;any en que està disponible: </span>"+d.dispany.disp+"<br></td><tr><td><span>Descripció: </span>"+d.descripcio+"<br></td></tr><tr><td><span>Comentaris Interns: </span>"+d.int_comentari+"<br></td></tr><tr><td><span>Quantitat màxima de tallers en un any acadèmic: </span>"+d.int_max_tallers_any+"<br><span>Duració de l'activitat (en hores): </span>"+d.int_duracio_activitat+"<br><span>Temps de preparació de l'activitat (en hores): </span>"+d.int_duracio_preparacio+"<br><span>Quantitat de personal implicat: </span><br>";
     
+    for(i=0;i<d["participants"].length;i++)
+    {    
+    cad+=d["participants"][i]["nom_participant"]+"<br>";
+    }
+   
+    
+    cad+="</td></tr><tr><td><span>Suggeriments i comentaris: </span>"+d.int_sugg+"<br></td></tr></table>";
+     
+    res.innerHTML=cad;
 }
 
 

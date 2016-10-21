@@ -47,7 +47,23 @@
         echo "<p class='instruccio'>No utilitzis cometes dobles. Utilitza les simples</p> <br><label>Id Tastet</label> <br><input type='number' name='activitat_id' value=".$_GET["id_activitat"]." class='inputshort'><br>";
         echo "<label>Id Solicitut</label> <br><input type='number' name='solicitut_id' value=".$_GET["id_solicitut"]." class='inputshort'><br>";
         echo "<label>Data</label> <br><input type='date' name='data'><br>";
-        echo "<label>Professor</label> <br><input type='text' name='professor'><br>";
+        echo "<label>Professor</label> <br>";
+            
+        $sel3 = "SELECT 340_personal.* FROM 340_personal,340_personal_epsevg where 340_personal.dni=340_personal_epsevg.dni and 340_personal_epsevg.incid='A' order by nom;";
+        $res3 = $con->query($sel3);
+        $res3=$res3->fetchAll();
+        
+        echo "<select name='professor'>";
+
+        foreach($res3 as $fila)
+         {
+             echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."'>".$fila["nom"]." ".$fila["cognoms"]."</option>;";
+            
+         }
+
+
+        echo "</select><br>";  
+            
         echo "<label>Número d'estudiants</label> <br><input type='number' name='numestu'><br>";
         echo "<label>Comentari</label><br><textarea rows='8' cols='60' name='comentari' ></textarea><br>";
         echo "</fieldset>";      
@@ -62,6 +78,7 @@
             $sql = 'INSERT INTO `activitats_fetes` (`activitat_id`, `solicitut_id`, `data`, `professor`, `numestu`, `comentari`,`anyaca`) VALUES ("'.$_POST["activitat_id"].'", "'.$_POST["solicitut_id"].'", "'.$_POST["data"].'", "'.$_POST["professor"].'", "'.$_POST["numestu"].'", "'.$_POST["comentari"].'", "'.$anyaca.'");';
             
             $res=$con->exec($sql);
+           
             
             if($res===false) $_SESSION["error"]="No s'ha pogut crear el tastet-fet fet el ".$_POST["data"]." corresponent a la sol.licitut ".$_POST["solicitut_id"];
             else 
