@@ -18,7 +18,7 @@ function mostrarLista(d){
     
     var res  = document.querySelector("#resultado"); 
     var cad="";
-    cad="<h4>Detalls Tastet "+d.nom+"</h4><table id='tablecargar'><tr><td><img alt='foto'  class='fototastet' src='"+d.foto+"'><span>Id: </span>"+d.id+"<br><span>Nom: </span>"+d.nom+"<br><span>Responsable: </span>"+d.responsable+"<br><span>DNI: </span>"+d.dni+"<br><span>Departament: </span>"+d.dep.nomdep+"<br><span>Lloc: </span>"+d.lloc+"<br><span>Nombre Màxim d'Alumnes per Sessió: </span>"+d.int_maxim_alu+"<br><span>Nivell mínim (o òptim) d&#39;edat o formació per fer el taller: </span>"+d.int_nivell+"<br><span>Períodes de l&#39;any en que està disponible: </span>"+d.dispany.disp+"<br></td><tr><td><span>Descripció: </span>"+d.descripcio+"<br></td></tr><tr><td><span>Comentaris Interns: </span>"+d.int_comentari+"<br></td></tr><tr><td><span>Quantitat màxima de tallers en un any acadèmic: </span>"+d.int_max_tallers_any+"<br><span>Duració de l'activitat (en hores): </span>"+d.int_duracio_activitat+"<br><span>Temps de preparació de l'activitat (en hores): </span>"+d.int_duracio_preparacio+"<br><span>Quantitat de personal implicat: </span><br>";
+    cad="<h4>Detalls Tastet "+d.nom+"</h4><table id='tablecargar'><tr><td><img alt='foto'  class='fototastet' src='"+d.foto+"'><span>Id: </span>"+d.id+"<br><span>Nom: </span>"+d.nom+"<br><span>Responsable: </span>"+d.responsable+"<br><span>DNI: </span>"+d.dni+"<br><span>Departament: </span>"+d.dep.nomdep+"<br><span>Lloc: </span>"+d.lloc+"<br><span>Nombre Màxim d'Alumnes per Sessió: </span>"+d.int_maxim_alu+"<br><span>Nivell mínim (o òptim) d&#39;edat o formació per fer el taller: </span>"+d.int_nivell+"<br><span>Períodes de l&#39;any en que està disponible: </span>"+d.prova_intdispany+"<br></td><tr><td><span>Descripció: </span>"+d.descripcio+"<br></td></tr><tr><td><span>Comentaris Interns: </span>"+d.int_comentari+"<br></td></tr><tr><td><span>Quantitat màxima de tallers en un any acadèmic: </span>"+d.int_max_tallers_any+"<br><span>Duració de l'activitat (en hores): </span>"+d.int_duracio_activitat+"<br><span>Temps de preparació de l'activitat (en hores): </span>"+d.int_duracio_preparacio+"<br><span>Personal implicat: </span><br>";
     
     for(i=0;i<d["participants"].length;i++)
     {    
@@ -74,8 +74,8 @@ function mostrarPeticions(d){
                 {
                    if(j!=="nom" && j!=="id" && j!=="activitat_id") cad+="<td>"+d[i][j]+"</td>";
                 }
-                if(d[i]["realitzada"]=="1") cad+="<td><a href='editartastetfet.php?id_activitat="+d[i]["activitat_id"]+"&id_solicitut="+d[i]["id"]+"'>Edita Detalls</a></td>";
-                if(d[i]["realitzada"]=="0") cad+="<td><a href='afegirtastetfet.php?id_activitat="+d[i]["activitat_id"]+"&id_solicitut="+d[i]["id"]+"'>Afegeix Detalls</a></td>";
+                if(d[i]["realitzada"]=="1") cad+="<td><a href='editartastetfet.php?id_activitat="+d[i]["activitat_id"]+"&id_solicitut="+d[i]["id"]+"' title='Entre d`altres coses, pots afegir i modificar la llista amb les dades dels estudiants'>Edita Detalls</a></td>";
+                if(d[i]["realitzada"]=="0") cad+="<td><a href='afegirtastetfet.php?id_activitat="+d[i]["activitat_id"]+"&id_solicitut="+d[i]["id"]+"' title='Has fet la classe? Registra els detalls (data, número d`alumnes...)'>Afegeix Detalls</a></td>";
                 
             cad+="</tr>";
             }

@@ -39,7 +39,7 @@ if(isset($_POST["dni"]))
 
 if(!isset($_SESSION['dni']))
     {
-        echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='/Francesc/Tastets/index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
+        echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
         $_SESSION=[];
         session_destroy();
         
@@ -125,7 +125,7 @@ if(isset($_SESSION['dni']) && !isset($_POST["confirmar"]))
         else 
         {
             echo "<h4>Ara mateix no ets responsable de cap curs</h4>";
-            echo "<table>
+            if($_SESSION['perfil']=="A") echo "<table>
             
             <tr><th colspan=4><button id='afegirtastet'><a href='afegirtastet.php?dni=".$_SESSION["dni"]."' title='afegir tastet'>Afegir Nou tastet</a></button>
             <tr><th>Nom del Tastet</th><th>Peticions</th><th>Eliminar</th><th>Modificar</th></tr></table>";

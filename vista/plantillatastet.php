@@ -40,9 +40,9 @@
         
       
         echo "<div id='detalls'>
-        <h3>Responsable: <br>".$data["responsable"]."<br>Departament:<br>".
+        <h3><span>Responsable: </span><br>".$data["responsable"]."<br><span>Departament:</span><br>".
         $data["dep"]["nomdep"]."<br>
-        Lloc: ".$data["lloc"]."<br>Disponibilitat: ".$data["int_dispany"]."<br>Nivell Mínim dels estudiants: ".$data["int_nivell"]."<br>Màxim d'alumnes per sessió: ".$data["int_maxim_alu"]."</h3><div><a href='".$rest."index.php' title='Tornar a Index'><img src='".$rest."vista/imatges/home.jpg'></a></div></div>";
+        <span>Lloc: </span>".$data["lloc"]."<br><span>Disponibilitat: </span> ".$data["prova_intdispany"]."<br><span>Nivell mínim de formació per fer el taller: </span> ".$data["int_nivell"]."<br><span>Màxim d'alumnes per sessió: </span> ".$data["int_maxim_alu"]."</h3><div><a href='".$rest."index.php' title='Tornar a Index'><img src='".$rest."vista/imatges/home.jpg'></a></div></div>";
         
        
         
@@ -54,7 +54,7 @@
 
                 <input type="hidden" name="id_activitat" value="'.$data["id"].'"><h4>Formulari d\'Inscripció</h4><br>
                 <label>Nom i Cognoms: </label><br><input type="text" name="nomicognoms"><br>
-                <label>Centre: </label><br><input type="text" name="centre"><br>
+                <label>Centre: </label><br><input type="text" name="centre" required><br>
                 <label>Número d\'estudiants aproximats: </label><br><input type="number" class="inputshort" name="estuaprox"><br>
                 <label>Email: </label><br><input type="email" name="email" required><br>
                 <label>Telèfon: </label><br><input type="tel" name="telefon" required><br>

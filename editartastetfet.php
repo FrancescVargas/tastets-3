@@ -11,8 +11,8 @@
           
       <header>
             <H1>FES UN TAST A L'ENGINYERIA</H1>
-            <img id="logo" src="/Francesc/Tastets/vista/imatges/logo2.jpg" alt="logo">
-            <img id="imatgeheader" src="/Francesc/Tastets/vista/imatges/capcalera_recurs_8.jpg">
+            <img id="logo" src="vista/imatges/logo2.jpg" alt="logo">
+            <img id="imatgeheader" src="vista/imatges/capcalera_recurs_8.jpg">
             <button><a href="sortirzonaprivada.php">Sortir de la zona Privada</a></button><button><a href="zonaprivada.php">Torna a la teva pàgina d'Inici</a></button><br>
             
             
@@ -55,11 +55,31 @@
         echo "<label>Id Tastet</label> <br><input type='number' name='activitat_id' value=".$_GET["id_activitat"]." class='inputshort'><br>";
         echo "<label>Id Solicitut</label> <br><input type='number' name='solicitut_id' value=".$_GET["id_solicitut"]." class='inputshort'><br>";
         echo "<label>Data</label> <br><input type='date' name='data' value=".$res["data"]."><br>";
-        echo '<label>Professor</label> <br><input type="text" name="professor" value="'.$res["professor"].'"><br>';
-        echo "<label>Número d'estudiants</label> <br><input type='number' name='numestu' value=".$res["numestu"]."><br>";
+        echo '<label>Professor</label><br>';
+            
+            
+        $sel3 = "SELECT 340_personal.* FROM 340_personal,340_personal_epsevg where 340_personal.dni=340_personal_epsevg.dni and 340_personal_epsevg.incid='A' order by nom;";
+        $res3 = $con->query($sel3);
+        $res3=$res3->fetchAll();
+        
+        echo "<select name='professor'>";
+
+        foreach($res3 as $fila)
+         {
+            if($res["professor"]== $fila["nom"]." ".$fila["cognoms"]) echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."' selected>".$fila["nom"]." ".$fila["cognoms"]."</option>"; 
+            else echo "<option value='".$fila["nom"]." ".$fila["cognoms"]."'>".$fila["nom"]." ".$fila["cognoms"]."</option>;";
+            
+         }
+
+
+        echo "</select><br>";      
+            
+            
+            
+        echo "<label>Número d'estudiants</label> <br><input type='number' name='numestu' value=".$res["numestu"]." required><br>";
         echo '<label>Comentari</label><br><textarea rows="8" cols="60" name="comentari">'.$res["comentari"].'</textarea><br>';
         echo "</fieldset>";  
-        echo "<fieldset><legend>Llistat d'Estudiants</legend><button><a href='llistatestu.php?numestu=".$res["numestu"]."&id_activitatfeta=".$res["id"]."'>Afegir estudiants</a></button><span> Hi han ".$res2["estu"]." registres introduïts </span>";
+        echo "<fieldset><legend>Llistat d'Estudiants</legend><button><a href='llistatestu.php?numestu=".$res["numestu"]."&id_activitatfeta=".$res["id"]."' required>Afegir estudiants</a></button><span> Hi han ".$res2["estu"]." registres introduïts </span>";
         if($res2["estu"]>0) echo "<button><a href='editallistatestu.php?id_activitatfeta=".$res["id"]."'>Editar/Eliminar Registres d'Estudiants</a></button>";
         echo "</fieldset>";
         
@@ -93,7 +113,7 @@
     
         else
         {
-            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='/Francesc/Tastets/index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
+            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
             $_SESSION=[];
             session_destroy();
         }

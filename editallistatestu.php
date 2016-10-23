@@ -11,8 +11,8 @@
           
       <header>
             <H1>FES UN TAST A L'ENGINYERIA</H1>
-            <img id="logo" src="/Francesc/Tastets/vista/imatges/logo2.jpg" alt="logo">
-            <img id="imatgeheader" src="/Francesc/Tastets/vista/imatges/capcalera_recurs_8.jpg">
+            <img id="logo" src="vista/imatges/logo2.jpg" alt="logo">
+            <img id="imatgeheader" src="vista/imatges/capcalera_recurs_8.jpg">
             <button><a href="sortirzonaprivada.php">Sortir de la zona Privada</a></button><button><a href="zonaprivada.php">Torna a la teva pàgina d'Inici</a></button><br>
             
             
@@ -46,13 +46,14 @@
          
         
             
-        echo "<h2>Edita la taula amb els assistents del centre ".$res[0]["centre"]." al Tastet de ".$res[0]["nom"]." realitzat el dia ".$res[0]["data"]."</h2><h3>Per eliminar registre esborra el DNI</h3>";
+        echo "<h2>Edita la taula amb els assistents del centre ".$res[0]["centre"]." al Tastet de ".$res[0]["nom"]." realitzat el dia ".$res[0]["data"]."</h2>";
         echo "<form id='formmodificar' method='post' action='editallistatestu.php'>";
+        echo "<p class='instruccio'>Per eliminar registre esborra el DNI</p> <br>";
         for($i=0;$i<$res2["numero"];$i++)       
         {   
             if(isset($i))
             {
-                echo "<input class='inputshort' type='number' name='id".$i."' placeholder='id' value='".$res[$i]["id"]."'><input type='text' name='nom".$i."' placeholder='nom' value='".$res[$i]["nom_estu"]."'><input type='text' name='dni".$i."' placeholder='dni' value='".$res[$i]["dni_estu"]."'><input type='text' name='mail".$i."' placeholder='mail' value='".$res[$i]["mail_estu"]."'><input type='hidden' value='".$_GET["id_activitatfeta"]."' name='id_activitatfeta'><input type='hidden' value='".$res[0]["numestu"]."' name='numestu'><input type='hidden' value='".$res[$i]["dni_estu"]."' name='dni_anterior'><br>";
+                echo "<input class='inputshort' type='number' name='id".$i."' placeholder='id' value='".$res[$i]["id"]."'><input type='text' name='nom".$i."' placeholder='nom' value='".$res[$i]["nom_estu"]."'><input type='text' name='dni".$i."' placeholder='dni' value='".$res[$i]["dni_estu"]."'><input type='text' name='mail".$i."' placeholder='mail' value='".$res[$i]["mail_estu"]."'><input type='hidden' value='".$_GET["id_activitatfeta"]."' name='id_activitatfeta'><input type='hidden' value='".$res[0]["numestu"]."' name='numestu'><input type='hidden' value='".$res[$i]["dni_estu"]."' name='dni_anterior'><input type='hidden' value='".$res[0]["nom"]."' name='nom_activitat'><br>";
             }
         }
         
@@ -62,7 +63,8 @@
             
         if(isset($_POST["nom0"]))
         {
-            
+            $m=0;
+            $d=0;
             for($i=0;$i<$_POST["numestu"];$i++)
             {
             
@@ -70,6 +72,7 @@
                 {
                     $sql= "delete from estu_activitats where id =".$_POST["id$i"].";";
                     $res=$con->exec($sql);
+                    if($res) $d++;
                     
                 }
                 
@@ -77,10 +80,12 @@
                 {    
                     $sql= "UPDATE estu_activitats SET nom_estu = '".$_POST["nom$i"]."', dni_estu = '".$_POST["dni$i"]."', mail_estu = '".$_POST["mail$i"]."' WHERE id =".$_POST["id$i"].";";
                     $res=$con->exec($sql);
+                    if($res) $m++;
                 
                 }
             }
             
+            $_SESSION["error"]="S'han eliminat ".$d." registres i s'han modificat ".$m." registres del tastet ".$_POST["nom_activitat"];
             $sql="select count(*) as numestu from estu_activitats where activitats_fetes_id=".$_POST["id_activitatfeta"].";";
             $res2=$con->query($sql);
             $res2=$res2->fetch();
@@ -99,7 +104,7 @@
     
         else
         {
-            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='/Francesc/Tastets/index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
+            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
             $_SESSION=[];
             session_destroy();
         }

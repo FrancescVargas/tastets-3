@@ -11,8 +11,8 @@
           
       <header>
             <H1>FES UN TAST A L'ENGINYERIA</H1>
-            <img id="logo" src="/Francesc/Tastets/vista/imatges/logo2.jpg" alt="logo">
-            <img id="imatgeheader" src="/Francesc/Tastets/vista/imatges/capcalera_recurs_8.jpg">
+            <img id="logo" src="vista/imatges/logo2.jpg" alt="logo">
+            <img id="imatgeheader" src="vista/imatges/capcalera_recurs_8.jpg">
             <button><a href="sortirzonaprivada.php">Sortir de la zona Privada</a></button><button><a href="zonaprivada.php">Torna a la teva pàgina d'Inici</a></button><br>
             
             
@@ -64,7 +64,7 @@
 
         echo "</select><br>";  
             
-        echo "<label>Número d'estudiants</label> <br><input type='number' name='numestu'><br>";
+        echo "<label>Número d'estudiants</label> <br><input type='number' name='numestu' required><br>";
         echo "<label>Comentari</label><br><textarea rows='8' cols='60' name='comentari' ></textarea><br>";
         echo "</fieldset>";      
         echo "<p><input type='submit' value='afegir'></p></form>";
@@ -100,7 +100,7 @@
     
         else
         {
-            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='/Francesc/Tastets/index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
+            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
             $_SESSION=[];
             session_destroy();
         }

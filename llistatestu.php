@@ -11,8 +11,8 @@
           
       <header>
             <H1>FES UN TAST A L'ENGINYERIA</H1>
-            <img id="logo" src="/Francesc/Tastets/vista/imatges/logo2.jpg" alt="logo">
-            <img id="imatgeheader" src="/Francesc/Tastets/vista/imatges/capcalera_recurs_8.jpg">
+            <img id="logo" src="vista/imatges/logo2.jpg" alt="logo">
+            <img id="imatgeheader" src="vista/imatges/capcalera_recurs_8.jpg">
             <button><a href="sortirzonaprivada.php">Sortir de la zona Privada</a></button><button><a href="zonaprivada.php">Torna a la teva pàgina d'Inici</a></button><br>
             
             
@@ -45,7 +45,7 @@
         echo "<form id='formmodificar' method='post' action='llistatestu.php'><p class='instruccio'>El DNI haurà d'estar emplenat per a afegir el registre</p> <br>";
         for($i=0;$i<=$_GET["numestu"];$i++)
         {
-            echo "<input type='text' name='nom".$i."' placeholder='nom'><input type='text' name='dni".$i."' placeholder='dni'><input type='text' name='mail".$i."' placeholder='mail'><input type='hidden' value='".$_GET["id_activitatfeta"]."' name='id_activitatfeta'><input type='hidden' value='".$_GET["numestu"]."' name='numestu'><br>";
+            echo "<input type='hidden' name='nom_activitat' value='".$res["nom"]."'><input type='text' name='nom".$i."' placeholder='nom'><input type='text' name='dni".$i."' placeholder='dni'><input type='text' name='mail".$i."' placeholder='mail'><input type='hidden' value='".$_GET["id_activitatfeta"]."' name='id_activitatfeta'><input type='hidden' value='".$_GET["numestu"]."' name='numestu'><br>";
         }
         
          echo "<p><input type='submit' value='acceptar'></p></form>";   
@@ -54,7 +54,7 @@
             
         if(isset($_POST["dni0"]))
         {
-            
+            $c=0;
             for($i=0;$i<=$_POST["numestu"];$i++)
             {
             if($_POST["dni$i"]!=="")
@@ -62,8 +62,12 @@
                 $sql= "INSERT INTO `estu_activitats` (`activitats_fetes_id`, `nom_estu`, `dni_estu`, `mail_estu`) VALUES ('".$_POST["id_activitatfeta"]."', '".$_POST["nom$i"]."', '".$_POST["dni$i"]."', '".$_POST["mail$i"]."');";
 
                 $res=$con->exec($sql);
+                $c++;
+                
                 }
             }
+            if($res===false) $_SESSION["error"]="No s'han pogut afegir estudiants al tastet de ".$_POST["nom_activitat"];
+            else $_SESSION["error"]="Afegits ".$c." estudiants al tastet de ".$_POST["nom_activitat"];
             $sql="select count(*) as numestu from estu_activitats where activitats_fetes_id=".$_POST["id_activitatfeta"].";";
             $res2=$con->query($sql);
             $res2=$res2->fetch();
@@ -82,7 +86,7 @@
     
         else
         {
-            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='/Francesc/Tastets/index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
+            echo "<h3>Les credencials no son vàlides</h3><div id='tornar'><a href='index.php' title='Tornar a Index'><img src='vista/imatges/home.jpg'></a></div>";
             $_SESSION=[];
             session_destroy();
         }

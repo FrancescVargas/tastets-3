@@ -118,6 +118,7 @@ create table activitats(
     int_duracio_activitat int,
     int_duracio_preparacio int,
     int_personal_implicat int,
+    prova_intdispany varchar(150),
     int_borrat varchar(5) default "No",
     foreign key (int_dispany) references dispany(id) ON DELETE SET NULL ON UPDATE CASCADE
 	
