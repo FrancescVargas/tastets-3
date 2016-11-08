@@ -35,7 +35,7 @@
         {
             try
             {
-                $con= new PDO('mysql:host=localhost;dbname=activitats', "root");
+                $con = new PDO('mysql:host=localhost;dbname=activitats', "root","", array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
             }
         catch(PDOException $e)
             {
@@ -151,7 +151,9 @@
             
              if(isset($_POST['id']))
              {
-                $dispany="";
+                $_POST['descripcio'] = str_replace("\"", "'", $_POST['descripcio']);
+                 
+                 $dispany="";
                 for($i=1;$i<=5;$i++)
                 {
                     if(isset($_POST["dispany".$i]))

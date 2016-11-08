@@ -129,6 +129,7 @@
             
         if(isset($_POST["nom"]))
         {
+                $_POST['descripcio'] = str_replace("\"", "'", $_POST['descripcio']);
                 $dispany="";
                 for($i=1;$i<=5;$i++)
                 {

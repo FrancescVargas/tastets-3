@@ -279,16 +279,16 @@ $res=$conexion->exec($sql);
               }
 
        
- $sql="INSERT INTO `340_personal_epsevg` VALUES ('0104557', '0', '0', 'pol.martin.llado@upc.edu', 'A', '0', '7XX', '28', '0', 'TC8', '0', '709', '', '', '39924081', 'EXT');
-INSERT INTO `340_personal_epsevg` VALUES ('2670937', '938967265', '0', 'wilman.alonso.pineda@upc.edu', 'A', '0', '7XX', '28', '0', 'TC8', '1', '710', 'Doctoratn SARTI', 'NEAP', 'Y4486492', 'EXT');
-INSERT INTO `340_personal_epsevg` VALUES ('0104146', '938967725', '0', 'giuseppe.gugliotta@upc.edu', 'A', '843', '7XX', '4', '0', 'TP4', '1', '737', '', '176', 'X5227440', 'PDI');
-INSERT INTO `340_personal_epsevg` VALUES ('0010810', '67795', '0', 'amelia.napoles@upc.edu', 'A', '844', '', '2', '0', '', '1', '712', '', 'D131', '47.927.15', 'PDI');
-INSERT INTO `340_personal_epsevg` VALUES ('', '67721', '0', 'marcos.gomila@upc.edu', 'A', '846', '709', '3', '0', 'TP', '13', '709', '', '127', '43066525', 'PDI');
-INSERT INTO `340_personal_epsevg` VALUES ('', '67785', '0', 'oriol.priu@upc.edu', 'A', '850', '7XX', '3', '0', '4', '1', '732', '', '157', '46131593', 'PDI');
-INSERT INTO `340_personal_epsevg` VALUES ('', '67761', '0', 'GERARD.SANZ@UPC.EDU', 'A', '847', '', '3', '0', 'TP', '6', '717', '', '142', '47711600', 'PDI');
-INSERT INTO `340_personal_epsevg` VALUES ('', '', '0', 'marta.montoliu@upc.edu', 'A', '848', '7XX', '3', '0', 'TP6', '6', '737', '', '176', '52218379', 'PDI');
-INSERT INTO `340_personal_epsevg` VALUES ('', '', '0', '	maria.rosa.gatell@upc.edu', 'A', '849', '7XX', '3', '0', 'TP', '6', '702', '', '', '52214703', 'PDI');
-INSERT INTO `340_personal_epsevg` VALUES ('0002084', '67281', '0', 'agustin@ac.upc.edu', 'A', '845', '', '7', '0', 'TC', '0', '701', '', '', '35017494', 'PDI');";
+ $sql="INSERT INTO `340_personal_epsevg` VALUES ('0104557', '0', '0', 'pol.llado@upc.edu', 'A', '0', '7XX', '28', '0', 'TC8', '0', '709', '', '', '39924081', 'EXT');
+INSERT INTO `340_personal_epsevg` VALUES ('2670937', '938967265', '0', 'wilma.pineda@upc.edu', 'A', '0', '7XX', '28', '0', 'TC8', '1', '710', 'Doctoratn SARTI', 'NEAP', 'Y44864', 'EXT');
+INSERT INTO `340_personal_epsevg` VALUES ('0104146', '938967725', '0', 'giusegliotta@upc.edu', 'A', '843', '7XX', '4', '0', 'TP4', '1', '737', '', '176', 'X52274', 'PDI');
+INSERT INTO `340_personal_epsevg` VALUES ('0010810', '67795', '0', 'amepoles@upc.edu', 'A', '844', '', '2', '0', '', '1', '712', '', 'D131', '47.927.', 'PDI');
+INSERT INTO `340_personal_epsevg` VALUES ('', '67721', '0', 'maila@upc.edu', 'A', '846', '709', '3', '0', 'TP', '13', '709', '', '127', '430665', 'PDI');
+INSERT INTO `340_personal_epsevg` VALUES ('', '67785', '0', 'orriu@upc.edu', 'A', '850', '7XX', '3', '0', '4', '1', '732', '', '157', '461315', 'PDI');
+INSERT INTO `340_personal_epsevg` VALUES ('', '67761', '0', 'GENZ@UPC.EDU', 'A', '847', '', '3', '0', 'TP', '6', '717', '', '142', '477116', 'PDI');
+INSERT INTO `340_personal_epsevg` VALUES ('', '', '0', 'maroliu@upc.edu', 'A', '848', '7XX', '3', '0', 'TP6', '6', '737', '', '176', '522183', 'PDI');
+INSERT INTO `340_personal_epsevg` VALUES ('', '', '0', '	marell@upc.edu', 'A', '849', '7XX', '3', '0', 'TP', '6', '702', '', '', '522147', 'PDI');
+INSERT INTO `340_personal_epsevg` VALUES ('0002084', '67281', '0', 'astin@ac.upc.edu', 'A', '845', '', '7', '0', 'TC', '0', '701', '', '', '350174', 'PDI');";
  
         
  $res=$conexion->exec($sql); 
@@ -335,16 +335,16 @@ $res=$conexion->exec($sql);
               }
 
        
- $sql="INSERT INTO `340_personal` VALUES ('Pol', 'Martín Lladó', 'H', 'Partida el Pous, s/n.', '43450', 'La Riba', '977876245', '609715992', '1993-08-31', '39924081', 'Z');
-INSERT INTO `340_personal` VALUES ('Wilman Alonso', 'Pineda Muñoz', 'H', 'Dr. Fleming, 9', '08800', 'Vilanova i la Geltrú', '0', '685250555', '1975-07-31', 'Y4486492', 'B');
-INSERT INTO `340_personal` VALUES ('Giuseppe', 'Gugliotta', 'H', 'Rabla Castell, 85, àtic-1', '08800', 'Vilanova i la Geltrú', '0', '647536722', '1975-09-02', 'X5227440', 'T');
-INSERT INTO `340_personal` VALUES ('Amelia', 'Napoles Alberro', 'D', 'Juan de la Cierva, 32, entlo. 1ª 08860 Castelldefe', '', '', '932776597', '606243694', '1963-01-05', '47.927.15', 'Y');
-INSERT INTO `340_personal` VALUES ('Agustin', 'Fernandez Jimenez', 'H', '', '', '', '0', '0', '0000-00-00', '35017494', 'V');
-INSERT INTO `340_personal` VALUES ('MARCOS', 'GOMILA GONZALEZ', 'H', 'AIGUA 212, 1 1 ', '', '08800 VILANOVA I LA GELTRU', '657371103', '0', '1972-02-23', '43066525', 'Z');
-INSERT INTO `340_personal` VALUES ('MARTA', 'MONTOLIU ALBET', 'D', 'RBLA. EXPOSICIÓ, 51, 2 4 ', '08800', 'VILANOVA I LA GELTRU', '938144753', '618862146', '1969-04-28', '52218379', 'F');
-INSERT INTO `340_personal` VALUES ('GERARD', 'SANZ COLLADO', 'H', 'RONDA OTERO PEDRAYO 42 ESC C B1', '08860', 'CASTELLDEFELS', '0', '653937222', '1986-03-26', '47711600', 'D');
-INSERT INTO `340_personal` VALUES ('ROSA', 'GATELL FERNANDEZ', 'D', 'JOAN LLAVERIAS 21, 2 2', '08800', 'VILANOVA I LA GELTRU', '0', '646680120', '1968-04-11', '52214703', 'B');
-INSERT INTO `340_personal` VALUES ('ORIOL', 'PRIU TOUS', 'H', 'AV. CAN CANYAMERES, 16, PB, 4', '08174', 'SANT CUGAT DEL VALLÈS', '0', '678557181', '1976-11-03', '46131593', 'X');";
+ $sql="INSERT INTO `340_personal` VALUES ('Pol', 'Martín Lladó', 'H', 'Par', '43450', 'La Riba', '976245', '609992', '1993-08-31', '399240', 'Z');
+INSERT INTO `340_personal` VALUES ('Wilman Alonso', 'Pineda Muñoz', 'H', 'Dr', '08800', 'Vilanova i la Geltrú', '0', '685255', '1975-07-31', 'Y44864', 'B');
+INSERT INTO `340_personal` VALUES ('Giuseppe', 'Gugliotta', 'H', 'Rab', '08800', 'Vilanova i la Geltrú', '0', '647522', '1975-09-02', 'X52274', 'T');
+INSERT INTO `340_personal` VALUES ('Amelia', 'Napoles Alberro', 'D', 'Juaª 08860 Castelldefe', '', '', '93277', '606294', '1963-01-05', '47.927.', 'Y');
+INSERT INTO `340_personal` VALUES ('Agustin', 'Fernandez Jimenez', 'H', '', '', '', '0', '0', '0000-00-00', '350174', 'V');
+INSERT INTO `340_personal` VALUES ('MARCOS', 'GOMILA GONZALEZ', 'H', 'AIG ', '', '08800 VILANOVA I LA GELTRU', '657373', '0', '1972-02-23', '430665', 'Z');
+INSERT INTO `340_personal` VALUES ('MARTA', 'MONTOLIU ALBET', 'D', 'RB ', '08800', 'VILANOVA I LA GELTRU', '938153', '618846', '1969-04-28', '522183', 'F');
+INSERT INTO `340_personal` VALUES ('GERARD', 'SANZ COLLADO', 'H', 'RO', '08860', 'CASTELLDEFELS', '0', '653922', '1986-03-26', '477116', 'D');
+INSERT INTO `340_personal` VALUES ('ROSA', 'GATELL FERNANDEZ', 'D', 'JO', '08800', 'VILANOVA I LA GELTRU', '0', '646620', '1968-04-11', '522147', 'B');
+INSERT INTO `340_personal` VALUES ('ORIOL', 'PRIU TOUS', 'H', 'AV. CA', '08174', 'SANT CUGAT DEL VALLÈS', '0', '678181', '1976-11-03', '461315', 'X');";
  
         
  $res=$conexion->exec($sql); 

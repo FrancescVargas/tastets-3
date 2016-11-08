@@ -34,7 +34,7 @@
      
       
         
-        echo "<div id='descripcio'><img id='fotodesc' src='/Francesc/Tastets/".$data["foto"]."'><h2>".$data["nom"]."</h2><p>
+        echo "<div id='descripcio'><img id='fotodesc' src='".$rest.$data["foto"]."'><h2>".$data["nom"]."</h2><p>
         ".$data["descripcio"]."</p></div>";
         
         
